@@ -1,0 +1,709 @@
+/* --- Asosiy sozlamalar (Reset va umumiy stillar) --- */
+:root {
+    /* Asosiy ranglar palitrasi */
+    --primary-color: #4A90E2; /* Ko'k rangning yorqinroq tusi */
+    --secondary-color: #7ED321; /* Yashil rangning yorqinroq tusi */
+    --accent-color: #FF5A5F; /* Aksent rangi (qizil-to'q sariq) */
+    --dark-color: #2D3A4B; /* To'q ko'k-kulrang */
+    --light-bg: #F8F9FA; /* Juda engil fon */
+    --white-color: #ffffff;
+    --text-color-dark: #333333;
+    --text-color-light: #666666;
+    --border-color: #EBEBEB;
+    --shadow-light: 0 6px 20px rgba(0,0,0,0.08); /* Yengilroq va tarqoqroq soya */
+    --shadow-medium: 0 12px 30px rgba(0,0,0,0.15); /* Kattaroq va chuqurroq soya */
+    --transition-speed: 0.4s;
+    --border-radius-main: 15px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color-dark);
+    line-height: 1.7; /* Qator balandligini oshirish */
+    background-color: var(--light-bg);
+    overflow-x: hidden; /* Gorizontal scroll'ni o'chirish, ayniqsa eski brauzerlar va responsivlik uchun muhim */
+}
+
+.container {
+    width: 90%; /* Kenglikni yana oshirish */
+    max-width: 1400px; /* Maksimal kenglikni oshirish */
+    margin: auto;
+    overflow: hidden; /* Ichki kontent chegaradan chiqmasligi uchun */
+    padding: 20px 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Yordamchi klasslar */
+.text-white { color: var(--white-color) !important; }
+.bg-light { background-color: var(--light-bg); }
+.ml-1 { margin-left: 0.5rem; }
+.section-padding { padding: 100px 0; } /* Har bir bo'limga qo'shimcha padding */
+
+
+/* --- Gradient fonlar --- */
+.bg-gradient {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--white-color);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.3); /* Kuchliroq ichki soya */
+}
+
+/* --- Header (Navigatsiya paneli) --- */
+.main-header {
+    background-color: var(--dark-color);
+    color: var(--white-color);
+    padding: 1.2rem 0; /* Kattaroq padding */
+    box-shadow: var(--shadow-medium);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px; /* Kattaroq padding */
+}
+
+.logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em; /* Kattaroq logo */
+    font-weight: 800;
+    color: var(--white-color);
+    transition: color var(--transition-speed) ease;
+}
+.logo:hover {
+    color: var(--secondary-color);
+}
+
+.logo .highlight {
+    color: var(--secondary-color);
+}
+
+.main-nav ul.nav-menu {
+    display: flex;
+}
+
+.main-nav ul.nav-menu li {
+    margin-left: 45px; /* Yanada kattaroq bo'shliq */
+}
+
+.main-nav ul.nav-menu li a {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 1.1em; /* Kattaroq matn */
+    padding: 10px 0;
+    position: relative;
+    transition: color var(--transition-speed) ease, transform 0.3s ease;
+}
+
+.main-nav ul.nav-menu li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 4px; /* Qalinroq chiziq */
+    background-color: var(--secondary-color);
+    left: 50%;
+    bottom: -10px; /* Pastroqqa tushirish */
+    transform: translateX(-50%);
+    transition: width var(--transition-speed) ease, left var(--transition-speed) ease;
+}
+
+.main-nav ul.nav-menu li a:hover::after,
+.main-nav ul.nav-menu li a.active::after {
+    width: 100%;
+    left: 0;
+    transform: translateX(0);
+}
+
+.main-nav ul.nav-menu li a:hover {
+    color: var(--secondary-color);
+    transform: translateY(-3px);
+}
+
+/* Mobil menyu tugmasi */
+.nav-toggle {
+    display: none; /* JavaScriptsiz bu tugma ishlamaydi, shuning uchun uni yashiramiz */
+    background: none;
+    border: none;
+    font-size: 2.2em; /* Kattaroq ikonka */
+    color: var(--white-color);
+    cursor: pointer;
+    transition: color var(--transition-speed) ease;
+}
+.nav-toggle:hover {
+    color: var(--secondary-color);
+}
+
+
+/* --- Tugmalar (Buttons) --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 40px; /* Kattaroq padding */
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 1.15em; /* Kattaroq shrift */
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1); /* Yaxshiroq animatsiya egri chizig'i */
+    box-shadow: var(--shadow-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em; /* Kichik harf orasi */
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+.btn-primary:hover {
+    background-color: #3a82d6; /* To'qroq ko'k */
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(74, 144, 226, 0.4);
+}
+
+.btn-secondary {
+    background-color: var(--dark-color);
+    color: var(--white-color);
+    border: 2px solid var(--secondary-color);
+}
+.btn-secondary:hover {
+    background-color: var(--secondary-color);
+    color: var(--dark-color);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(126, 211, 33, 0.4);
+}
+
+.btn-small {
+    padding: 12px 25px;
+    font-size: 1em;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.btn-small:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.btn-submit {
+    background-color: var(--secondary-color);
+    color: var(--dark-color);
+    font-weight: 700;
+    box-shadow: 0 6px 15px rgba(126, 211, 33, 0.3);
+}
+.btn-submit:hover {
+    background-color: #6fb621; /* To'qroq yashil */
+    color: var(--white-color);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(126, 211, 33, 0.4);
+}
+
+/* --- Sektsiyalar (Umumiy stil) --- */
+section {
+    margin-bottom: 40px; /* Sektsiyalar orasidagi bo'shliqni oshirish */
+    background-color: var(--white-color);
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--shadow-light);
+    /* JavaScriptsiz animatsiyalar o'chiriladi, chunki ularni triggerlaydigan mexanizm yo'q. */
+}
+
+.section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.8em; /* Juda katta sarlavha */
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--dark-color);
+    position: relative;
+    padding-bottom: 20px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 120px; /* Kattaroq chiziq */
+    height: 7px; /* Qalinroq chiziq */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+.section-title.text-white::after {
+    background-color: var(--secondary-color);
+}
+
+.section-description {
+    text-align: center;
+    font-size: 1.35em; /* Kattaroq tavsif */
+    color: var(--text-color-light);
+    max-width: 1000px;
+    margin: 0 auto 70px auto;
+    font-weight: 400;
+}
+
+/* --- Hero Section --- */
+.hero {
+    background: linear-gradient(rgba(45, 58, 75, 0.92), rgba(45, 58, 75, 0.92)), url('https://source.unsplash.com/random/1920x1080?abstract,tech,coding,dark') no-repeat center center/cover;
+    color: var(--white-color);
+    text-align: center;
+    padding: 180px 0; /* Juda katta padding */
+    min-height: 750px; /* Balandlikni oshirish */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.8); /* Kuchliroq soya */
+    position: relative;
+    overflow: hidden; /* Kontent tashqariga chiqmasligi uchun */
+}
+
+.hero-background-overlay { /* Hero ichidagi overlay */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top left, rgba(74, 144, 226, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at bottom right, rgba(126, 211, 33, 0.2) 0%, transparent 50%);
+    opacity: 1; /* JavaScriptsiz doimiy ko'rinadi */
+}
+
+
+.hero h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5.5em; /* Gigant sarlavha */
+    margin-bottom: 35px;
+    line-height: 1.1;
+    font-weight: 800;
+}
+
+.hero p {
+    font-size: 1.8em; /* Kattaroq matn */
+    margin-bottom: 70px;
+    max-width: 1100px;
+    font-weight: 500;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 30px; /* Tugmalar orasidagi kattaroq bo'shliq */
+}
+
+/* --- About Me Section --- */
+.about-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px; /* Juda katta bo'shliq */
+    flex-wrap: wrap;
+}
+
+.profile-pic-container {
+    position: relative;
+    width: 350px; /* Juda katta rasm */
+    height: 350px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.profile-pic-container:hover {
+    transform: scale(1.05) rotate(3deg);
+}
+
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.profile-pic-border { /* Rasmni o'rab turgan animatsiyali chegara */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 8px solid transparent;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)) border-box;
+    /* Eski brauzerlar uchun -webkit-prefix kerak bo'lishi mumkin */
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: rotateBorder 8s linear infinite; /* Chegara aylanish animatsiyasi */
+}
+
+@keyframes rotateBorder {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+
+.about-text {
+    flex: 2;
+    max-width: 900px;
+    font-size: 1.3em; /* Kattaroq matn */
+    color: var(--text-color-light);
+    text-align: justify;
+    line-height: 1.8;
+}
+
+.about-text p:not(:last-child) {
+    margin-bottom: 25px;
+}
+
+/* --- Skills Section --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Kattaroq elementlar */
+    gap: 40px; /* Katta bo'shliq */
+    justify-content: center;
+}
+
+.skill-item {
+    background: var(--white-color);
+    padding: 45px; /* Kattaroq padding */
+    border-radius: var(--border-radius-main);
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, background-color 0.3s ease;
+    border-bottom: 5px solid transparent; /* Animatsiyali chegara uchun */
+}
+
+.skill-item:hover {
+    transform: translateY(-20px); /* Juda katta ko'tarilish */
+    box-shadow: var(--shadow-medium);
+    background-color: #fefefe;
+    border-color: var(--primary-color); /* Hoverda chegara rangi */
+}
+
+.skill-item .skill-icon { /* Iconka uchun alohida stil */
+    font-size: 4.5em; /* Juda katta ikonka */
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    transition: color var(--transition-speed) ease, transform 0.3s ease;
+}
+.skill-item:hover .skill-icon {
+    color: var(--secondary-color);
+    transform: scale(1.1) rotate(5deg); /* Hoverda ikonka animatsiyasi */
+}
+
+.skill-item h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em; /* Kattaroq sarlavha */
+    margin-bottom: 15px;
+    color: var(--dark-color);
+}
+
+.skill-item p {
+    font-size: 1.05em;
+    color: var(--text-color-light);
+}
+
+/* --- Portfolio Section --- */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Juda katta elementlar */
+    gap: 40px;
+    justify-content: center;
+}
+
+.portfolio-item {
+    background: var(--white-color);
+    border-radius: var(--border-radius-main);
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-12px);
+    box-shadow: var(--shadow-medium);
+}
+
+.portfolio-item .portfolio-img {
+    width: 100%;
+    height: 300px; /* Juda katta rasm */
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-speed) ease;
+}
+
+.portfolio-item:hover .portfolio-img {
+    transform: scale(1.1); /* Rasmni kattalashtirish */
+}
+
+.portfolio-info {
+    padding: 35px;
+    text-align: center;
+    background-color: var(--white-color);
+}
+
+.portfolio-info h4 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+    font-size: 1.8em;
+}
+
+.portfolio-info p {
+    font-size: 1.1em;
+    color: var(--text-color-light);
+    margin-bottom: 30px;
+}
+
+/* --- Random Images / Ilhom Gallery Section --- */
+.random-images {
+    background-color: var(--light-bg);
+}
+
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Kattaroq elementlar */
+    gap: 30px;
+    justify-content: center;
+}
+
+.image-gallery .gallery-img {
+    width: 100%;
+    height: 280px; /* Kattaroq rasm */
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    border: 4px solid transparent; /* Chegara uchun */
+}
+
+.image-gallery .gallery-img:hover {
+    transform: scale(1.06);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--secondary-color); /* Hoverda chegara rangi */
+}
+
+/* --- Contact Me Section (Forma) --- */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Kattaroq bo'shliq */
+    max-width: 800px; /* Juda katta forma */
+    margin: auto;
+    padding: 60px; /* Juda katta padding */
+    border-radius: var(--border-radius-main);
+    background-color: var(--white-color);
+    box-shadow: var(--shadow-medium);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: var(--text-color-dark);
+    font-size: 1.15em;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="text"], /* Subject input */
+.contact-form textarea {
+    width: 100%;
+    padding: 20px 25px; /* Juda katta padding */
+    border: 1px solid var(--border-color);
+    border-radius: 10px; /* Dumaloqroq chegaralar */
+    font-size: 1.2em; /* Kattaroq shrift */
+    font-family: 'Inter', sans-serif;
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 5px rgba(74, 144, 226, 0.3); /* Kattaroq soya */
+    outline: none;
+}
+
+.contact-form textarea {
+    min-height: 180px; /* Balandlikni oshirish */
+    resize: vertical;
+}
+
+/* JavaScriptsiz forma validatsiyasi ishlamaydi, shuning uchun error-message yashiramiz */
+.form-group .error-message {
+    color: var(--accent-color);
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: none; /* JavaScriptsiz yashiramiz */
+}
+
+/* --- Footer --- */
+.main-footer {
+    background-color: var(--dark-color);
+    color: var(--white-color);
+    text-align: center;
+    padding: 50px 0;
+    margin-top: 80px; /* Katta bo'shliq */
+    font-size: 1.05em;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-icons a {
+    color: var(--white-color);
+    font-size: 2.2em; /* Katta ikonka */
+    margin: 0 18px;
+    transition: color var(--transition-speed) ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--secondary-color);
+    transform: translateY(-7px) scale(1.15); /* Katta ko'tarilish va kattalashish */
+}
+
+
+/* --- Responsive Dizayn --- */
+@media (max-width: 1200px) {
+    .hero h2 { font-size: 4.5em; }
+    .hero p { font-size: 1.6em; }
+    .section-title { font-size: 3.2em; }
+    .section-description { font-size: 1.2em; }
+    .about-content { gap: 60px; }
+    .profile-pic-container { width: 300px; height: 300px; }
+    .about-text { font-size: 1.15em; }
+    .skills-grid, .portfolio-grid, .image-gallery { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .contact-form { padding: 40px; }
+}
+
+@media (max-width: 992px) {
+    .main-header .container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .main-nav .nav-menu {
+        /* JavaScriptsiz mobil menyu to'liq yopiladi, chunki uni ochish funksiyasi yo'q */
+        display: none; /* Mobil menyuni yashiramiz */
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--dark-color);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+        padding: 25px 0;
+        border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    
+    .main-nav .nav-menu li {
+        margin: 12px 0;
+        text-align: center;
+    }
+    .main-nav ul.nav-menu li a::after {
+        left: 50%; /* Mobil menyuda markazda bo'lishi */
+        transform: translateX(-50%);
+    }
+    .nav-toggle {
+        display: none; /* JavaScriptsiz bu tugma ishlamaydi */
+    }
+
+    .hero { padding: 120px 0; min-height: 600px; }
+    .hero h2 { font-size: 3.5em; }
+    .hero p { font-size: 1.4em; }
+    .hero-actions { flex-direction: column; gap: 20px; }
+    .btn { width: 90%; max-width: 350px; }
+
+    .section-padding { padding: 70px 0; }
+    .section-title { font-size: 2.8em; margin-bottom: 20px; }
+    .section-description { font-size: 1.1em; margin-bottom: 50px; }
+
+    .about-content { flex-direction: column; text-align: center; gap: 50px; }
+    .profile-pic-container { margin-bottom: 20px; }
+    .about-text { font-size: 1.05em; }
+
+    .skill-item, .portfolio-item, .image-gallery .gallery-img {
+        width: 90%;
+        margin: auto;
+    }
+    .skills-grid, .portfolio-grid, .image-gallery { gap: 30px; }
+
+    .skill-item .skill-icon { font-size: 3.8em; }
+    .skill-item h4 { font-size: 1.7em; }
+    .portfolio-item .portfolio-img { height: 250px; }
+    .portfolio-info h4 { font-size: 1.5em; }
+    .portfolio-info p { font-size: 1em; }
+    .image-gallery .gallery-img { height: 180px; }
+
+    .contact-form { padding: 30px; }
+    .contact-form input, .contact-form textarea { padding: 15px 20px; font-size: 1.1em; }
+    .contact-form textarea { min-height: 120px; }
+
+    .main-footer { padding: 30px 0; }
+    .social-icons a { font-size: 1.8em; margin: 0 15px; }
+}
+
+@media (max-width: 576px) {
+    .main-header .logo { font-size: 2em; }
+    .nav-toggle { font-size: 2em; }
+
+    .hero { padding: 80px 0; min-height: 450px; }
+    .hero h2 { font-size: 2.5em; }
+    .hero p { font-size: 1.1em; margin-bottom: 50px; }
+    .btn { padding: 14px 30px; font-size: 1em; }
+
+    .section-padding { padding: 50px 0; }
+    .section-title { font-size: 2em; }
+    .section-description { font-size: 0.95em; margin-bottom: 30px; }
+
+    .profile-pic-container { width: 250px; height: 250px; }
+    .about-text { font-size: 0.95em; }
+
+    .skill-item { padding: 30px; }
+    .skill-item .skill-icon { font-size: 3em; }
+    .skill-item h4 { font-size: 1.5em; }
+
+    .portfolio-item .portfolio-img { height: 200px; }
+    .portfolio-info { padding: 20px; }
+    .portfolio-info h4 { font-size: 1.3em; }
+    .portfolio-info p { font-size: 0.9em; }
+    .image-gallery .gallery-img { height: 180px; }
+
+    .contact-form { padding: 20px; }
+    .contact-form input, .contact-form textarea { padding: 12px 15px; font-size: 1em; }
+    .contact-form textarea { min-height: 120px; }
+
+    .main-footer { padding: 30px 0; }
+    .social-icons a { font-size: 1.5em; margin: 0 10px; }
+}
